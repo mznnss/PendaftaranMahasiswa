@@ -15,12 +15,16 @@
             <p>Isi formulir ini dengan data diri yang valid.</p>
         </header>
 
-        <form id="registrationForm" onsubmit="return validateForm()">
+        <form id="registrationForm" 
+              action="https://formspree.io/f/xrbnwqda" 
+              method="POST" 
+              onsubmit="return validateForm()">
+            
             <div class="form-group">
                 <label for="name">Nama Lengkap <span class="required">*</span></label>
                 <div class="input-icon-wrapper">
                     <i class="fas fa-user icon"></i>
-                    <input type="text" id="name" placeholder="Masukkan nama lengkap" required>
+                    <input type="text" id="name" name="Nama Lengkap" placeholder="Masukkan nama lengkap" required>
                 </div>
             </div>
 
@@ -28,7 +32,7 @@
                 <label for="email">Email <span class="required">*</span></label>
                 <div class="input-icon-wrapper">
                     <i class="fas fa-envelope icon"></i>
-                    <input type="email" id="email" placeholder="contoh: nama@email.com" required>
+                    <input type="email" id="email" name="_replyto" placeholder="contoh: nama@email.com" required> 
                 </div>
             </div>
 
@@ -52,11 +56,11 @@
                 <label for="major">Jurusan <span class="required">*</span></label>
                 <div class="input-icon-wrapper">
                     <i class="fas fa-book icon"></i>
-                    <select id="major" required>
+                    <select id="major" name="Jurusan" required>
                         <option value="">Pilih Jurusan</option>
-                        <option value="TI">Teknik Informatika</option>
-                        <option value="SI">Sistem Informasi</option>
-                        <option value="AK">Akuntansi</option>
+                        <option value="Teknik Informatika">Teknik Informatika</option>
+                        <option value="Sistem Informasi">Sistem Informasi</option>
+                        <option value="Akuntansi">Akuntansi</option>
                     </select>
                 </div>
             </div>
@@ -64,16 +68,16 @@
             <div class="form-group">
                 <label>Jenis Kelamin <span class="required">*</span></label>
                 <div class="radio-group">
-                    <input type="radio" id="male" name="gender" value="Laki-laki" required>
+                    <input type="radio" id="male" name="Jenis Kelamin" value="Laki-laki" required>
                     <label for="male">Laki-laki</label>
                     
-                    <input type="radio" id="female" name="gender" value="Perempuan">
+                    <input type="radio" id="female" name="Jenis Kelamin" value="Perempuan">
                     <label for="female">Perempuan</label>
                 </div>
             </div>
 
             <div class="form-group checkbox-group">
-                <input type="checkbox" id="terms" required>
+                <input type="checkbox" id="terms" name="Syarat dan Ketentuan Disetujui" value="Ya" required>
                 <label for="terms">Saya menyetujui <a href="#">syarat dan ketentuan</a> pendaftaran</label>
             </div>
 
