@@ -3,29 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Pendaftaran Mahasiswa</title>
+    <title>Pendaftaran Mahasiswa (Modern)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
-    <div class="container">
-        <h2>Form Pendaftaran Mahasiswa</h2>
-        <form id="registrationForm" onsubmit="return validateForm()"> 
+    <div class="registration-container">
+        <header class="form-header">
+            <i class="fa-solid fa-graduation-cap header-icon"></i>
+            <h1>Form Pendaftaran Mahasiswa</h1>
+            <p>Isi formulir ini dengan data diri yang valid.</p>
+        </header>
+
+        <form id="registrationForm" onsubmit="return validateForm()">
             <div class="form-group">
-                <label for="name">Nama Lengkap</label>
-                <input type="text" id="name" name="name" required>
+                <label for="name">Nama Lengkap <span class="required">*</span></label>
+                <div class="input-icon-wrapper">
+                    <i class="fas fa-user icon"></i>
+                    <input type="text" id="name" placeholder="Masukkan nama lengkap" required>
+                </div>
             </div>
+
             <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
+                <label for="email">Email <span class="required">*</span></label>
+                <div class="input-icon-wrapper">
+                    <i class="fas fa-envelope icon"></i>
+                    <input type="email" id="email" placeholder="contoh: nama@email.com" required>
+                </div>
             </div>
+
             <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
+                <label for="password">Password <span class="required">*</span></label>
+                <div class="input-icon-wrapper">
+                    <i class="fas fa-lock icon"></i>
+                    <input type="password" id="password" placeholder="Minimal 8 karakter" required>
+                </div>
             </div>
-            <button type="submit">Daftar</button>
+
+            <div class="form-group">
+                <label for="confirm-password">Konfirmasi Password <span class="required">*</span></label>
+                <div class="input-icon-wrapper">
+                    <i class="fas fa-key icon"></i>
+                    <input type="password" id="confirm-password" placeholder="Ketik ulang password" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="major">Jurusan <span class="required">*</span></label>
+                <div class="input-icon-wrapper">
+                    <i class="fas fa-book icon"></i>
+                    <select id="major" required>
+                        <option value="">Pilih Jurusan</option>
+                        <option value="TI">Teknik Informatika</option>
+                        <option value="SI">Sistem Informasi</option>
+                        <option value="AK">Akuntansi</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Jenis Kelamin <span class="required">*</span></label>
+                <div class="radio-group">
+                    <input type="radio" id="male" name="gender" value="Laki-laki" required>
+                    <label for="male">Laki-laki</label>
+                    
+                    <input type="radio" id="female" name="gender" value="Perempuan">
+                    <label for="female">Perempuan</label>
+                </div>
+            </div>
+
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="terms" required>
+                <label for="terms">Saya menyetujui <a href="#">syarat dan ketentuan</a> pendaftaran</label>
+            </div>
+
+            <button type="submit" class="submit-btn">
+                <i class="fas fa-paper-plane"></i> Daftar Sekarang
+            </button>
+            
             <p id="error-message" class="error-text"></p>
         </form>
+
+        <footer class="form-footer">
+            <p><span class="required">*</span> Menandakan field wajib diisi. Pastikan data Anda valid.</p>
+        </footer>
     </div>
+
     <script src="script.js"></script> 
 </body>
 </html>
