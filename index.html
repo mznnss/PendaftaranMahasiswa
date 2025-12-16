@@ -18,9 +18,7 @@
         <form id="registrationForm" 
               action="https://formspree.io/f/xrbnwqda" 
               method="POST" 
-              onsubmit="return validateForm()">
-            
-            <div class="form-group">
+              onsubmit="return validateAndSubmit(event)"> <div class="form-group">
                 <label for="name">Nama Lengkap <span class="required">*</span></label>
                 <div class="input-icon-wrapper">
                     <i class="fas fa-user icon"></i>
@@ -86,6 +84,7 @@
             </button>
             
             <p id="error-message" class="error-text"></p>
+            <p id="success-message" class="success-text"></p>
         </form>
 
         <footer class="form-footer">
