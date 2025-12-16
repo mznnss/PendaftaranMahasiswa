@@ -1,47 +1,54 @@
 function validateForm() {
-    // 1. Ambil nilai dari setiap field, menggunakan .trim() untuk menghilangkan spasi di awal/akhir
+    // 1. Ambil nilai dan elemen
     const name = document.getElementById('name').value.trim();
     const email = document.getElementById('email').value.trim();
-    const password = document.getElementById('password').value.trim();
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirm-password').value;
+    const major = document.getElementById('major').value;
+    const gender = document.querySelector('input[name="gender"]:checked');
+    const terms = document.getElementById('terms').checked;
     
-    // Ambil elemen untuk menampilkan pesan error
-    const errorMessage = document.getElementById('error-message');
+    const errorMessageElement = document.getElementById('error-message');
     
-    // Reset pesan error sebelumnya
-    errorMessage.textContent = ''; 
+    // Reset pesan error
+    errorMessageElement.textContent = ''; 
 
-    // 2. Lakukan validasi sederhana (input tidak boleh kosong)
-    if (name === "") {
-        // 3. Tampilkan pesan peringatan jika kosong
-        errorMessage.textContent = "Nama Lengkap harus diisi.";
-        document.getElementById('name').focus(); // Fokus ke field yang kosong
-        return false; // Mencegah form dikirim
-    }
-
-    if (email === "") {
-        errorMessage.textContent = "Email harus diisi.";
-        document.getElementById('email').focus();
+    // Helper function untuk menampilkan error
+    const displayError = (message) => {
+        errorMessageElement.textContent = `⚠️ ${message}`;
         return false;
+    };
+
+    // 2. Validasi Field Kosong (Teks, Email, Password)
+    if (name === "") return displayError("Nama Lengkap wajib diisi.");
+    if (email === "") return displayError("Email wajib diisi.");
+    if (password === "") return displayError("Password wajib diisi.");
+    if (confirmPassword === "") return displayError("Konfirmasi Password wajib diisi.");
+
+    // 3. Validasi Panjang Password
+    if (password.length < 8) return displayError("Password minimal harus 8 karakter.");
+
+    // 4. Validasi Kecocokan Password
+    if (password !== confirmPassword) {
+        // Hapus nilai konfirmasi password agar pengguna mengetik ulang
+        document.getElementById('confirm-password').value = ''; 
+        return displayError("Password dan Konfirmasi Password tidak cocok.");
     }
     
-    // Tambahan: Validasi format email dasar (opsional tapi baik)
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailPattern.test(email)) {
-        errorMessage.textContent = "Format Email tidak valid.";
-        document.getElementById('email').focus();
-        return false;
-    }
+    // 5. Validasi Dropdown (Jurusan)
+    if (major === "") return displayError("Jurusan wajib dipilih.");
 
-    if (password === "") {
-        errorMessage.textContent = "Password harus diisi.";
-        document.getElementById('password').focus();
-        return false;
-    }
+    // 6. Validasi Radio Button (Jenis Kelamin)
+    if (!gender) return displayError("Jenis Kelamin wajib dipilih.");
+    
+    // 7. Validasi Checkbox (Syarat & Ketentuan)
+    if (!terms) return displayError("Anda harus menyetujui Syarat dan Ketentuan.");
+
 
     // Jika semua validasi berhasil
-    alert("Data pendaftaran berhasil divalidasi!");
+    alert("✅ Pendaftaran berhasil divalidasi dan siap dikirim!");
     
-    // Dalam praktik nyata, Anda akan mengembalikan `true` di sini untuk mengirim form ke server.
-    // Untuk tujuan demonstrasi dan agar pesan alert tetap terlihat (form tidak reload), kita kembalikan `false`.
+    // Dalam aplikasi nyata, kembalikan 'true' agar form dikirim ke server.
+    // Untuk demo, kita kembalikan 'false' agar halaman tidak reload setelah alert.
     return false; 
 }
