@@ -1,69 +1,240 @@
+/* 1. Variabel dan Reset Dasar */
+:root {
+    --primary-color: #3b82f6; /* Biru terang */
+    --primary-dark: #2563eb;
+    --background-light: #f3f4f6;
+    --card-bg: #ffffff;
+    --header-bg: #1e3a8a; /* Biru tua untuk header */
+    --error-color: #ef4444; /* Merah */
+    --text-color: #374151;
+    --border-radius: 12px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-light);
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+    min-height: 100vh;
+    padding: 20px;
 }
 
-.container {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+/* 2. Kontainer Utama dan Kartu Form */
+.registration-container {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1), 0 5px 10px rgba(0, 0, 0, 0.05);
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
+    overflow: hidden; /* Penting untuk header */
 }
 
-h2 {
+/* 3. Header Form */
+.form-header {
+    background-color: var(--header-bg);
+    color: white;
+    padding: 25px 30px;
     text-align: center;
-    color: #333;
-    margin-bottom: 20px;
+}
+
+.header-icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.form-header h1 {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.form-header p {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* 4. Pengelompokan Form dan Input */
+form {
+    padding: 30px;
 }
 
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 label {
     display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #555;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-color);
+    font-size: 0.95rem;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box; /* Memastikan padding tidak melebihi lebar total */
+.required {
+    color: var(--error-color);
 }
 
-button[type="submit"] {
+/* 5. Gaya Input dengan Ikon */
+.input-icon-wrapper {
+    position: relative;
+}
+
+.input-icon-wrapper input,
+.input-icon-wrapper select {
     width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
+    padding: 12px 12px 12px 40px; /* Padding kiri lebih besar untuk ikon */
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 1rem;
+    color: var(--text-color);
+    transition: border-color 0.3s, box-shadow 0.3s;
+    appearance: none; /* Hilangkan default style select pada beberapa browser */
+}
+
+.input-icon-wrapper .icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9ca3af;
+    font-size: 1rem;
+}
+
+.input-icon-wrapper input:focus,
+.input-icon-wrapper select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+/* 6. Gaya Radio Button (Jenis Kelamin) */
+.radio-group {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.radio-group input[type="radio"] {
+    /* Sembunyikan input default */
+    position: absolute;
+    opacity: 0;
     cursor: pointer;
-    font-size: 16px;
+}
+
+.radio-group label {
+    display: inline-block;
+    padding-left: 25px;
+    position: relative;
+    cursor: pointer;
+    font-weight: normal;
+}
+
+/* Radio button kustom (lingkaran luar) */
+.radio-group label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #9ca3af;
+    border-radius: 50%;
+    background: #fff;
+}
+
+/* Titik tengah radio button saat dicentang */
+.radio-group input[type="radio"]:checked + label::after {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    background: var(--primary-color);
+    border-radius: 50%;
+}
+
+/* 7. Checkbox Syarat dan Ketentuan */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+    accent-color: var(--primary-color);
+}
+
+.checkbox-group label {
+    font-weight: normal;
+    margin-bottom: 0;
+}
+
+.checkbox-group a {
+    color: var(--primary-dark);
+    text-decoration: none;
+}
+
+/* 8. Tombol Submit */
+.submit-btn {
+    width: 100%;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
     margin-top: 10px;
 }
 
-button[type="submit"]:hover {
-    background-color: #0056b3;
+.submit-btn:hover {
+    background-color: var(--primary-dark);
 }
 
-/* Style untuk pesan peringatan/error */
+.submit-btn:active {
+    transform: scale(0.99);
+}
+
+.submit-btn i {
+    margin-right: 8px;
+}
+
+/* 9. Pesan Error dan Footer */
 .error-text {
-    color: #dc3545; /* Warna merah */
-    margin-top: 15px;
-    font-weight: bold;
+    color: var(--error-color);
     text-align: center;
+    margin-top: 15px;
+    font-weight: 600;
+}
+
+.form-footer {
+    padding: 0 30px 20px;
+    text-align: center;
+}
+
+.form-footer p {
+    font-size: 0.8rem;
+    color: #9ca3af;
+}
+
+/* 10. Responsif - Tidak perlu banyak media query karena sudah Flex/persentase */
+@media (max-width: 550px) {
+    .registration-container {
+        border-radius: 0; /* Full width di layar kecil */
+        box-shadow: none;
+    }
+    .form-header, form {
+        padding: 20px;
+    }
 }
