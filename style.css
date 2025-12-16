@@ -235,3 +235,23 @@ label {
         padding: 20px;
     }
 }
+/* Style Tambahan untuk Notifikasi Sukses */
+.success-text {
+    color: #10b981; /* Hijau terang */
+    text-align: center;
+    margin-top: 15px;
+    font-weight: 600;
+    /* Mulai dengan tidak terlihat */
+    display: none; 
+    padding: 10px;
+    border: 1px solid #10b98150;
+    background-color: #ecfdf5;
+    border-radius: 6px;
+}
+/* Pastikan .error-text tetap seperti sebelumnya */
+.error-text {
+    color: var(--error-color);
+    text-align: center;
+    margin-top: 15px;
+    font-weight: 600;
+}
